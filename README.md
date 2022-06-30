@@ -1,4 +1,4 @@
-# guardduty
+# guardduty 3rd party 第三方情报部署脚本
 参数设置
 ```
 bucketregion=us-east-1
