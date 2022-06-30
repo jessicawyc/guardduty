@@ -20,3 +20,5 @@ aws guardduty create-threat-intel-set \
     --location s3://$bucketname/$filenam\
     --activate --region=$region
 ```
+告警展示:
+![sample](/FindingSample.png)
