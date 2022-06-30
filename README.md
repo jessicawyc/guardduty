@@ -18,5 +18,5 @@ aws guardduty create-threat-intel-set \
     --name $ThreatSet \
     --format TXT \
     --location s3://$bucketname/$filenam\
-    --activate
+    --activate --region=$region
 ```
