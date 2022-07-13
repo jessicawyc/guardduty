@@ -2,18 +2,19 @@
 need to create a S3 bucket to store TI, then configure the url of S3 into your guardduty Threat List
 参数设置 Set Paramter
 ```
-bucketregion=us-east-1
-bucketname=gdti
-region=us-east-1
+bucketregion=cn-north-1
+bucketname=gudarddutyti
+region=cn-north-1
 filename=threatlist.txt
 ThreatSet=xthreatbookcn
-regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text))
+regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
 ```
 CLI命令 Command to create and bucket and upload your TI file
 ```
 aws s3api create-bucket \
     --bucket $bucketname \
-    --region $bucketregion
+    --region $bucketregion \
+    --create-bucket-configuration LocationConstraint=$bucketregion
 aws s3 cp $filename s3://$bucketname/ --region=$bucketregion
 ```
 在所有regions部署TI Deploy the TI into Guardduty Threat list in each region
