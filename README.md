@@ -5,7 +5,7 @@ need to create a S3 bucket to store TI, then configure the url of S3 into your g
 bucketregion=us-east-1
 bucketname=gdti
 region=us-east-1
-filenam=threatlist.txt
+filename=threatlist.txt
 ThreatSet=xthreatbookcn
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text))
 ```
@@ -24,7 +24,7 @@ aws guardduty create-threat-intel-set \
     --detector-id $(aws guardduty list-detectors --output text --query 'DetectorIds' --region=$region)  \
     --name $ThreatSet \
     --format TXT \
-    --location s3://$bucketname/$filenam\
+    --location s3://$bucketname/$filename\
     --activate --region=$region
 echo $region
 done
