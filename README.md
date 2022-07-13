@@ -1,5 +1,6 @@
 # guardduty 3rd party 第三方情报部署脚本
-参数设置
+need to create a S3 bucket to store TI, then configure the url of S3 into your guardduty Threat List
+参数设置 Set Paramter
 ```
 bucketregion=us-east-1
 bucketname=gdti
@@ -8,14 +9,14 @@ filenam=threatlist.txt
 ThreatSet=xthreatbookcn
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text))
 ```
-CLI命令
+CLI命令 Command to create and bucket and upload your TI file
 ```
 aws s3api create-bucket \
     --bucket $bucketname \
     --region $bucketregion
 aws s3 cp $filename s3://$bucketname/ --region=$bucketregion
 ```
-在所有regions部署TI
+在所有regions部署TI Deploy the TI into Guardduty Threat list in each region
 
 ```
 for region in $regions; do
@@ -28,5 +29,5 @@ aws guardduty create-threat-intel-set \
 echo $region
 done
 ```
-告警展示:
+告警展示,If the TI was trigger ,will show alert in Guardduty Console as below snapshot:
 ![sample](/FindingSample.png)
