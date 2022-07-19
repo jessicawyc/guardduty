@@ -34,7 +34,7 @@ done
 ## 远程情报商TI部署 TI in vendor's account (invisible for you)
 此种场景下情报文件放在情报提供商的S3中,通过对S3的权限配置,给予客户account的Guardduty service role获取文件的能力.
 ### Step 1 Vendor S3 Configuration
-S3 policy, replace the accountid with the customer's accountid
+S3 policy, replace the accountid with the customer's accountid, for global account,change the aws-cn to aws in each arn
 ```
 {
     "Version": "2012-10-17",
