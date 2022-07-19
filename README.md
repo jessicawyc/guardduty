@@ -1,4 +1,5 @@
 # guardduty 3rd party 第三方情报部署脚本
+## 本地情报部署 TI in your own account
 Need to create a S3 bucket to store TI, then configure the url of S3 into your guardduty Threat List
 Only Organization's delegated admin account for Guardduty can execute this action
 参数设置 Set Paramter
@@ -31,5 +32,29 @@ aws guardduty create-threat-intel-set \
 echo $region
 done
 ```
+## 远程情报商TI部署 TI in vendor's account (invisible for you)
+此种场景下情报文件放在情报提供商的S3中,通过对S3的权限配置,给予客户account的Guardduty service role获取文件的能力.
+### Step 1 Vendor S3 Configuration
+### Step 2 Customer Account Configuration
+参数设置 Set Paramter
+```
+tiurl='s3://bucketname/filename.txt'
+ThreatSet=mytest
+regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
+
+```
+CLI command
+```
+for region in $regions; do
+aws guardduty create-threat-intel-set \
+    --detector-id $(aws guardduty list-detectors --output text --query 'DetectorIds' --region=$region)  \
+    --name $ThreatSet \
+    --format TXT \
+    --location tiurl\
+    --activate --region=$region
+echo $region
+done
+```
+
 告警展示,If the TI was trigger ,will show alert in Guardduty Console as below snapshot:
 ![sample](/FindingSample.png)
