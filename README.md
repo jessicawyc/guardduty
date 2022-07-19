@@ -45,12 +45,13 @@ S3 policy, replace the accountid with the customer's accountid
             "Sid": "allowcrossaccount",
             "Effect": "Allow",
             "Principal": {
-                "AWS": 
-                    "arn:aws:iam::<customeraccountid>:role/aws-service-role/guardduty.amazonaws.com/AWSServiceRoleForAmazonGuardDuty"
+                "AWS": [
+                    "arn:aws-cn:iam::<accountid1>:role/aws-service-role/guardduty.amazonaws.com/AWSServiceRoleForAmazonGuardDuty",
+                    "arn:aws-cn:iam::<accountid2>:role/aws-service-role/guardduty.amazonaws.com/AWSServiceRoleForAmazonGuardDuty"
                 ]
             },
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::<bucketname>/<filename>.txt"
+            "Resource": "arn:aws-cn:s3:::<bucketname>/<filename>.txt"
         }
     ]
 }
