@@ -59,8 +59,8 @@ S3 policy, replace the accountid with the customer's accountid
 ### Step 2 Customer Account Configuration
 参数设置 Set Paramter
 ```
-tiurl='s3://bucketname/filename.txt'
-ThreatSet=mytest
+tiurl='s3://threatbook-gdti/threatlist.txt'
+ThreatSet=yudashuang
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
 
 ```
