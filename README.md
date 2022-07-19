@@ -8,7 +8,7 @@ bucketregion=cn-north-1
 bucketname=gudarddutyti
 region=cn-north-1
 filename=threatlist.txt
-ThreatSet=xthreatbookcn
+threatset=mytestset
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
 ```
 CLI命令 Command to create and bucket and upload your TI file
@@ -25,11 +25,10 @@ aws s3 cp $filename s3://$bucketname/ --region=$bucketregion
 for region in $regions; do
 aws guardduty create-threat-intel-set \
     --detector-id $(aws guardduty list-detectors --output text --query 'DetectorIds' --region=$region)  \
-    --name $ThreatSet \
+    --name $threatset \
     --format TXT \
-    --location s3://$bucketname/$filename\
+    --location $tiurl\
     --activate --region=$region
-echo $region
 done
 ```
 ## 远程情报商TI部署 TI in vendor's account (invisible for you)
@@ -59,8 +58,8 @@ S3 policy, replace the accountid with the customer's accountid
 ### Step 2 Customer Account Configuration
 参数设置 Set Paramter
 ```
-tiurl='s3://threatbook-gdti/threatlist.txt'
-ThreatSet=yudashuang
+tiurl=s3://threatbook-gdti/threatlist.txt
+threatset=yudashuang
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
 
 ```
@@ -69,11 +68,10 @@ CLI command
 for region in $regions; do
 aws guardduty create-threat-intel-set \
     --detector-id $(aws guardduty list-detectors --output text --query 'DetectorIds' --region=$region)  \
-    --name $ThreatSet \
+    --name $threatset \
     --format TXT \
-    --location tiurl\
+    --location $tiurl\
     --activate --region=$region
-echo $region
 done
 ```
 
