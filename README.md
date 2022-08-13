@@ -2,7 +2,8 @@
 ## 本地情报部署 TI in your own account
 Need to create a S3 bucket to store TI, then configure the url of S3 into your guardduty Threat List
 Only Organization's delegated admin account for Guardduty can execute this action
-参数设置 Set Paramter
+
+### 参数设置 Set Paramter
 ```
 bucketregion=cn-north-1
 bucketname=gudarddutyti
