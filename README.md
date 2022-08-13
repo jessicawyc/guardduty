@@ -12,7 +12,8 @@ filename=threatlist.txt
 threatset=mytestset
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
 ```
-CLI命令 Command to create and bucket and upload your TI file
+### Run CLI命令 
+Command to create a bucket and upload your TI file into it
 ```
 aws s3api create-bucket \
     --bucket $bucketname \
