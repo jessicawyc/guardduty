@@ -11,6 +11,7 @@ region=cn-north-1
 filename=threatlist.txt
 threatset=mytestset
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text --region=$region))
+tiurl='s3://'$bucketname'/'$filename
 ```
 ### Run CLI Command 在CLI中运行以下命令 
 Command to create a bucket and upload your TI file into it
