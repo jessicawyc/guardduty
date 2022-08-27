@@ -1,4 +1,4 @@
-# guardduty 3rd party 第三方情报部署脚本
+# Amazon Guardduty 3rd party 第三方情报部署脚本
 ## 本地情报部署 TI in your own account
 Need to create a S3 bucket to store TI, then configure the url of S3 into your guardduty Threat List
 Only Organization's delegated admin account for Guardduty can execute this action
@@ -76,4 +76,4 @@ done
 ```
 
 告警展示,If the TI was trigger ,will show alert in Guardduty Console as below snapshot:
-<img src="src-url" height="240px" width="160px" />
+<img src=(tifinding.png) height="240px" width="160px" />
