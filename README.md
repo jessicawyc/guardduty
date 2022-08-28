@@ -78,5 +78,4 @@ aws guardduty create-threat-intel-set \
 done
 ```
 
-告警展示,If the TI was trigger ,will show alert in Guardduty Console as below snapshot:
-![sample](/FindingSample.png)
+
