@@ -76,4 +76,4 @@ done
 ```
 
 告警展示,If the TI was trigger ,will show alert in Guardduty Console as below snapshot:
-<img src="tifinding.png" height="580px" width="900px" />
+<img src="tifinding.png" height="580px" width="60%" />
